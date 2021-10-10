@@ -1,30 +1,40 @@
+from os import name
 import tkinter
+from Texter import Texter
+import pathlib
 
 
 class App(tkinter.Frame):
-    def __init__(self, master, title = "IMG Texter"):
+
+    NAME = "IMG Texter"
+    __title : str
+
+    def __init__(self, master = tkinter.Tk(), title = "IMG Texter"):
         super().__init__(master)
         self.master = master
         self.setTitle(title = title)
         self.pack()
 
     def setTitle(self, title : str):
-        self.master.title(title)
+        self.__title = title
+        self.master.title(self.__title)
 
 
-app = App(master = tkinter.Tk())
+def main():
+    app = App()
+
+    texter = Texter(str(pathlib.Path(__file__).parent.parent.resolve()) + "\\img-test\\text-test3.png")
+
+    app.master.geometry("400x300")
 
 
-#app.setTitle(title = "IMG Texter")
+    labelTexterView = tkinter.Label(app, text = texter.getText())
 
-#app.master.title("IMG Texter")
-app.master.geometry("400x300")
+    boton = tkinter.Button(app, text = "Press Me", command = lambda: labelTexterView.pack())
+    boton.pack()
 
-def hello(nombre):
-    print("Hi " + nombre)
+    app.mainloop()
 
-boton = tkinter.Button(app, text = "Press Me", command = lambda: hello("Lucas"))
-boton.pack()
 
-app.mainloop()
-
+if __name__ == '__main__':
+    main()
