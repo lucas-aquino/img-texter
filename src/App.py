@@ -1,15 +1,17 @@
 from os import name
-import tkinter
+import tkinter as tk
+from tkinter import ttk
+import tkinterDnD
 from Texter import Texter
 import pathlib
 
 
-class App(tkinter.Frame):
+class App(tk.Frame):
 
     NAME = "IMG Texter"
     __title : str
 
-    def __init__(self, master = tkinter.Tk(), title = "IMG Texter"):
+    def __init__(self, master = tk.Tk(), title = "IMG Texter"):
         super().__init__(master)
         self.master = master
         self.setTitle(title = title)
@@ -26,11 +28,11 @@ def main():
     texter = Texter(str(pathlib.Path(__file__).parent.parent.resolve()) + "\\img-test\\text-test3.png")
 
     app.master.geometry("400x300")
+    
 
+    labelTexterView = tk.Label(app, text = texter.getText())
 
-    labelTexterView = tkinter.Label(app, text = texter.getText())
-
-    boton = tkinter.Button(app, text = "Press Me", command = lambda: labelTexterView.pack())
+    boton = tk.Button(app, text = "Press Me", command = lambda: labelTexterView.pack())
     boton.pack()
 
     app.mainloop()
