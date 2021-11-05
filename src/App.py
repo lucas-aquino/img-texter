@@ -1,17 +1,16 @@
 from os import name
 import tkinter as tk
 from tkinter import ttk
-import tkinterDnD
+import tkinterDnD as tkdnd
 from Texter import Texter
 import pathlib
-
 
 class App(tk.Frame):
 
     NAME = "IMG Texter"
     __title : str
 
-    def __init__(self, master = tk.Tk(), title = "IMG Texter"):
+    def __init__(self, master = tkdnd.Tk(), title = "IMG Texter"):
         super().__init__(master)
         self.master = master
         self.setTitle(title = title)
@@ -22,14 +21,20 @@ class App(tk.Frame):
         self.master.title(self.__title)
 
 
+
+def drop_image(event):
+    pass
+
+
 def main():
     app = App()
 
     texter = Texter(str(pathlib.Path(__file__).parent.parent.resolve()) + "\\img-test\\text-test3.png")
 
     app.master.geometry("400x300")
-    
 
+    
+    
     labelTexterView = tk.Label(app, text = texter.getText())
 
     boton = tk.Button(app, text = "Press Me", command = lambda: labelTexterView.pack())

@@ -12,3 +12,6 @@ colorama = "*"
 
 [requires]
 python_version = "3.9"
+
+[scripts]
+app = "python src/App.py"
